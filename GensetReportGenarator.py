@@ -34,7 +34,7 @@ def CreateDoc(name):
     doc.add_paragraph('Test Start Time: ' + str(Start_time), style='List Bullet')
     doc.add_paragraph('Test End Time: ' + str(End_time), style='List Bullet')
     try:
-        Start_time_obj = datetime.datetime.strptime(Start_time, '%H:%M')
+        Start_time_obj = datetime.datetime.strptime(Start_time, '%H:%M')                     ## Calculation way for haveing the test duration time
         End_time_obj = datetime.datetime.strptime(End_time, '%H:%M')
         def_time = End_time_obj - Start_time_obj
         doc.add_paragraph('Test Duration: ' + str(def_time), style='List Bullet')
@@ -48,7 +48,7 @@ def CreateDoc(name):
 
     #doc.add_heading('Main data characters: RPM, LOAD, etc.', level=1)
 
-    #############################Main Characters###################################################
+    #############################    Main Characters     ###################################################
     doc.add_paragraph('Main Characters', style='Intense Quote')
     doc.add_paragraph('Max RPM value: '+str(max_rpm), style='List Bullet')
     rpm_test = ('Is grater then 2000? '+str(max_rpm>2000))
@@ -57,7 +57,8 @@ def CreateDoc(name):
     doc.add_picture('Rpm_Load.png', width=Inches(6), height=Inches(4))
 
     doc.add_page_break()
-    #########################Other Data###############################################################
+
+    #########################    Other Data    ###############################################################
     doc.add_paragraph('Other Data', style='Intense Quote')
     #doc.add_paragraph('Max Bus DC voltage value: '+str(max_rpm), style='List Bullet')
     doc.add_paragraph('Engine Working time: '+str(WorkHours)+' Minutes', style='List Bullet')
@@ -65,7 +66,8 @@ def CreateDoc(name):
     #doc.add_paragraph('Max RPM value: ' + str(max_rpm), style='List Bullet')
     doc.add_picture('load_thrrotle.png', width=Inches(6), height=Inches(4))
     doc.add_page_break()
-    ##########################Power and Electricty Data##################################################################
+
+    ##########################    Power and Electricty Data      ##################################################################
     doc.add_paragraph('Power and Electricty Data', style='Intense Quote')
     doc.add_paragraph('Max Bus DC voltage value: ' + str(max_BusV), style='List Bullet')
     doc.add_paragraph('Max Rectifire Temprature: ' + str(recti_T), style='List Bullet')
@@ -73,7 +75,8 @@ def CreateDoc(name):
     doc.add_picture('SOCvsDOD.png', width=Inches(6), height=Inches(4))
     doc.add_picture('PowerDis.png', width=Inches(6), height=Inches(4))
     #doc.add_picture('SOCvsDOD_1.png', width=Inches(6), height=Inches(4))
-    #####################Results######################################################################
+
+    #####################    Results    ######################################################################
     doc.add_paragraph('Results', style='Intense Quote')
     records = (
         ('Max RPM', str(max_rpm) , str(rpm_test)),
@@ -95,11 +98,12 @@ def CreateDoc(name):
 
     doc.add_page_break()
 
-    #File_name = ('GensetRunningReport_' +str(TestDate) + '.docx')
-    #doc.save(File_name)
-    doc.save('GensetReport' + TestDate +'.docx')
+    File_name = ('GensetRunningReport_' +str(TestDate) + '.docx')
+    print(File_name)
+    #doc.save(os.path.join(File_name))
+    #doc.save('GensetReport' + TestDate +'.docx')
     #doc.save('GensetRunningReport_' +str(TestDate) + '.docx')
-    #doc.save('GensetRunningReport_2.docx')
+    doc.save('GensetRunningReport_NoDate.docx')
 
 
 def DataAnalyse(FileAdress):
